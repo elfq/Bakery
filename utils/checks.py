@@ -27,4 +27,3 @@ def has_permissions(*, check=all, **perms):
     async def pred(ctx):
         return await check_permissions(ctx, perms, check=check)
     return commands.check(pred)
-
