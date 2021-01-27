@@ -10,7 +10,7 @@ class Bot(AutoShardedBot):
         self.prefix = prefix
 
     async def on_message(self, msg):
-        if not self.is_ready() or msg.author.bot or not permissions.can_handle(msg, "send_messages"):
+        if not self.is_ready() or msg.author.bot or not checks.can_handle(msg, "send_messages"):
             return
 
         await self.process_commands(msg)
