@@ -14,7 +14,7 @@ class Profile(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     self.db = sqlite.Database()
-    self.username_regex = r"^\w+"
+    self.username_regex = r"^[^@]*$"
 
   def check_existing_profile(self, user_id):
    data = self.db.fetchrow("SELECT * FROM Accounts WHERE user_id=?", (user_id,))
@@ -30,7 +30,7 @@ class Profile(commands.Cog):
    """ Create a profile! """
    profile_exists = self.check_existing_profile(ctx.author.id)
    if profile_exists:
-     return await ctx.send(f":x: You've created created a profile!")
+     return await ctx.send(f":x: You've already created a profile!")
 
    start_content = await ctx.send(f"Hello {ctx.author.mention}! Please choose a username for your profile!")
    confirm = random.randint(10000, 99999)
@@ -70,7 +70,18 @@ class Profile(commands.Cog):
    
    
    self.db.execute("INSERT INTO Accounts VALUES (?, ?)", (ctx.author.id, setname))
-   await ctx.send(f":checkmark: Your username is now set in my database!")
+   await ctx.send(f"✅ Your profile is now saved in my database!")
+
+
+  @commands.command(name="profile")
+  async def profile_(self, ctx):
+    embed = discord.Embed(
+      title="Your Profile",
+      description=f"**Name:** {self.check_profile(ctx.author.id)}",
+      color = discord.Colour.red())
+
+    await ctx.reply(embed=embed)
+
 
 
 def setup(bot):
