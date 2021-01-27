@@ -19,9 +19,8 @@ class Profile(commands.Cog):
   def check_existing_profile(self, user_id):
    data = self.db.fetchrow("SELECT * FROM Accounts WHERE user_id=?", (user_id,))
    if data:
-       return data["profile_name"]
-   else:
-       return None
+     return data["profile_name"]
+   return None
 
 
   @commands.command(
