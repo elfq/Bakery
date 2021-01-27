@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from utils import database.create_tables, database.sqlite
+from utils.database import create_tables, sqlite
 
 tables = create_tables.creation(debug=True)
 if not tables:
