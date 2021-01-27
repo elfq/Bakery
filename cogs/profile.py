@@ -1,6 +1,10 @@
 import discord
 from discord.ext import commands
 from utils.database import create_tables, sqlite
+import random
+import asyncio
+import re
+
 
 tables = create_tables.creation(debug=True)
 if not tables:
@@ -13,7 +17,7 @@ class Profile(commands.Cog):
     self.username_regex = r"^\w+"
 
   def check_existing_profile(self, user_id):
-   data = self.db.fetchrow("SELECT * FROM profile_name WHERE user_id=?", (user_id,))
+   data = self.db.fetchrow("SELECT * FROM Accounts WHERE user_id=?", (user_id,))
    if data:
        return data["profile_name"]
    else:
@@ -21,18 +25,21 @@ class Profile(commands.Cog):
 
 
   @commands.command(
-   name="start"
-  )
+   name="start")
   async def start_(self, ctx):
    """ Create a profile! """
    profile_exists = self.check_existing_profile(ctx.author.id)
    if profile_exists:
-            return await ctx.send(
-                f":x: You've created created a profile!"
-            )
+     return await ctx.send(f":x: You've created created a profile!")
 
-   start_msg = await ctx.send(f"Hello {ctx.author.mention}! Please choose a username for your profile!")
+   start_content = await ctx.send(f"Hello {ctx.author.mention}! Please choose a username for your profile!")
    confirm = random.randint(10000, 99999)
+
+   def check_name(m):
+            if (m.author == ctx.author and m.channel == ctx.channel):
+                if re.compile(self.username_regex).search(m.content):
+                    return True
+            return False
 
 
    def check_confirm(m):
@@ -41,21 +48,29 @@ class Profile(commands.Cog):
            return True
        return False
 
-   setname = user.content.split(" ")[0]
-   confirm_msg = await ctx.send(
-   f"Alright **{ctx.author.name}**, do you confirm that your username is {setname}?\nType `{confirmcode}` to confirm this choice\n")
+   try:
+         user = await self.bot.wait_for('message', timeout=30.0, check=check_name)
+   except asyncio.TimeoutError:
+         return await start_content.edit(
+            content=f"~~{start_content.clean_content}~~\n\n:x: Account creation failed!")
+
+   
+
+
+   setname = user.content
+
+   confirm_msg = await ctx.send(f"Okay {ctx.author.mention}, are you sure you want to set your username to **`{setname}`**? Please type `{confirm}` if you're sure!")
 
    try:
-     user = await self.bot.wait_for('message', timeout=30.0, check=check_confirm)
+       user = await self.bot.wait_for('message', timeout=30.0, check=check_confirm)
    except asyncio.TimeoutError:
-        return await confirm_msg.edit(
-            content=f"~~{confirm_msg.clean_content}~~\n\nStopped process...")
+         return await confirm_msg.edit(
+            content=f"~~{confirm_msg.clean_content}~~\n\n:x: Account creation process stopped...")
 
-        self.db.execute("INSERT INTO profile_name VALUES (?, ?)", (ctx.author.id, setname))
-        await ctx.send(f":checkmark: Your username is now set in my database!")
-
-
-
+   
+   
+   self.db.execute("INSERT INTO Accounts VALUES (?, ?)", (ctx.author.id, setname))
+   await ctx.send(f":checkmark: Your username is now set in my database!")
 
 
 def setup(bot):

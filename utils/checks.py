@@ -2,6 +2,8 @@ import discord
 import os
 from os import environ
 from discord.ext import commands
+from utils import default
+
 
 owners = environ.get("DEVELOPERS")
 
