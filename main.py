@@ -18,13 +18,13 @@ for file in os.listdir("cogs"):
         bot.load_extension(f"cogs.{name}")
 
 
-@bot.event
+@bot.event 
 async def on_ready():
   print("-----------")
   print(f"ID: {bot.user.id}")
   print(f"Username: {bot.user.name}")
-  print("Activity: Playing The Oregon Trail")
+  print("Activity: 🍰 Making Cakes")
   print("-----------")
-  await bot.change_presence(activity=discord.Game(name="The Oregon Trail"))
+  await bot.change_presence(activity=discord.Game(name="🍰 Making Cakes"))
 
 bot.run(environ.get("DISCORD_TOKEN"))

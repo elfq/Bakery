@@ -3,7 +3,7 @@ from utils.database import sqlite as db
 
 class Accounts(db.Table):
     user_id = db.Column("BIGINT", nullable=False, primary_key=True)
-    profile_name = db.Column("USERNAME", nullable=False)
+    bakery_name = db.Column("TEXT", nullable=False)
 
 
 def creation(debug: bool = False):
