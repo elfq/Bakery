@@ -1,4 +1,4 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/q7n/oregonbot/badge)](https://www.codefactor.io/repository/github/q7n/oregonbot)
+[![CodeFactor](https://www.codefactor.io/repository/github/q7n/Bakery/badge)](https://www.codefactor.io/repository/github/q7n/Bakery)
 
 # Bakery Bot
 
