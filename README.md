@@ -1,11 +1,11 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/q7n/oregonbot/badge)](https://www.codefactor.io/repository/github/q7n/oregonbot)
 
-# Oregon Trail Bot
+# Bakery Bot
 
 
-### What is Oregon Bot?
+### What is BakeryBot?
 
-OregonBot is a discord RPG bot based on the classic 70s' game "The Orgeon Trail".
+BakeryBot is a discord bot for baking!
 
 ### Self-hosting.
 
