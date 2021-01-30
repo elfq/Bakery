@@ -4,6 +4,7 @@ from utils.database import sqlite as db
 class Accounts(db.Table):
     user_id = db.Column("BIGINT", nullable=False, primary_key=True)
     bakery_name = db.Column("TEXT", nullable=False)
+    cakes = db.Column("BIGINT", nullable=False, primary_key=True)
 
 
 def creation(debug: bool = False):
