@@ -29,9 +29,9 @@ class Bake(commands.Cog):
 
   @bake.command()
   async def cake(self, ctx):
-   cake_amount self.bot.cakes[ctx.author.id] =  1
+   cake_amount = self.bot.cakes[ctx.author.id] =  1
    cake_amount = self.bot.cakes[ctx.author.id] += 1
-   self.db.execute("INSERT INTO Accounts VALUES (?, ?)", (ctx.author.id, self.bot.cakes))
+   self.db.execute("INSERT INTO Accounts VALUES (?, ?)", (ctx.author.id, cake_amount))
    embed = discord.Embed(
      title = "🍰",
      description = "You've baked **1** cake, you now have **working on this** cakes!",
