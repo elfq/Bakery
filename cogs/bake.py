@@ -20,23 +20,9 @@ class Bake(commands.Cog):
     embed.set_footer(text="BakeryBot - b!")
     await ctx.send(embed=embed)
 
-  def existing(self, user_id):
-   data = self.db.fetchrow("SELECT * FROM Accounts WHERE user_id=?", (user_id,))
-   if data:
-     return data["user_id"]
-   return None
+
   
 
-  @bake.command()
-  async def cake(self, ctx):
-   cake_amount = self.bot.cakes[ctx.author.id] =  1
-   cake_amount = self.bot.cakes[ctx.author.id] += 1
-   self.db.execute("INSERT INTO Accounts VALUES (?, ?)", (ctx.author.id, cake_amount))
-   embed = discord.Embed(
-     title = "🍰",
-     description = "You've baked **1** cake, you now have **working on this** cakes!",
-     color=discord.Colour.blurple())
-   await ctx.reply(embed=embed)
 
 
 
