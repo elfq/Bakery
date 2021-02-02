@@ -1,12 +1,16 @@
 @echo off
 echo Starting setup...
 
-pip install -r requirements.txt
+echo Installing virtual environment...
+
+python -m venv venv
+
+echo Installing packages...
+
+%cd%\venv\Scripts\pip install -r requirements.txt
 
 echo Imported required packages.
 
-python main.py
-
-echo Completed process, close this window and check if your bot is online!
+echo Done, process finished.
 
 PAUSE
