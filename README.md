@@ -38,7 +38,7 @@ Once all modules finish installing, run `python main.py`, and the bot will be se
 
 - Please go to `utils/checks` and replace the moderators with your own, or to non`.
 
-You need to have python installed for this, please go (here)[https://www.python.org/downloads/] to install the latest version of python!
+You need to have python installed for this, please go [here](https://www.python.org/downloads/) to install the latest version of python!
 
 
 
