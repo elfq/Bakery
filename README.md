@@ -17,9 +17,7 @@ Then create a new file named `.env` and add the values below.
 
 Example:
 ```
-DISCORD_TOKEN=YOUR-TOKEN-HERE
-DISCORD_PREFIX=b!
-DEVELOPERS=388811685156093953
+TOKEN=YOUR-TOKEN-HERE
 ```
 
 **Windows Setup**
@@ -32,11 +30,11 @@ Open up terminal, and locate the folder, once you've located it run the followin
 
 `pip3 install -r requirements.txt`
 
-Once all modules finish installing, run `python main.py`, and the bot will be setup!
+Once all modules finish installing, run `python bot.py`, and the bot will be setup!
 
 **Important**
 
-- Please go to `utils/checks` and replace the moderators with your own, or to non`.
+- Please go to `utils/checks.py` and add your discord ID in the owners field..
 
 You need to have python installed for this, please go [here](https://www.python.org/downloads/) to install the latest version of python!
 

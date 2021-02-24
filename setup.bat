@@ -11,6 +11,8 @@ echo Installing packages...
 
 echo Imported required packages.
 
-echo Done, process finished.
+python bot.py
+
+echo Done, process finished, your bot should now be online.
 
 PAUSE
