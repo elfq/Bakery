@@ -3,6 +3,7 @@ import random
 import asyncio
 from discord.ext import commands
 from utils.database import create_tables, sqlite
+from discord.ext.commands.cooldowns import BucketType
 
 
 class Bake(commands.Cog):
@@ -43,6 +44,7 @@ class Bake(commands.Cog):
     await ctx.reply(embed = embed)
 
   @bake.command(name="cake", aliases = ["cakes"])
+  @commands.cooldown(1, 60, BucketType.user) 
   async def BakeCake(self, ctx: commands.Context):
     if self.bakery_name(ctx.author.id) == None:
      return await ctx.send(f":x: You need to create a bakery in order to use this command, use **`b!bakery start`** to create one.")

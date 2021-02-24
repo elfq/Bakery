@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import discord
 from discord.ext import fancyhelp
 
-
 bot = Bot(
     name="BakeryBot",
     command_prefix="b!",

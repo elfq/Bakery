@@ -61,13 +61,14 @@ class Shop(commands.Cog):
     
    if amt < 0:
      return await ctx.reply(":x: You can't sell negative cakes.")
+
+   multiplied_amt = amt + 5
+   
+   self.db.execute("UPDATE Bakery SET bakebucks=? WHERE user_id=?", (self.baked_cakes(ctx.author.id) * multiplied_amt, ctx.author.id))
   
    self.db.execute("UPDATE Baked SET cakes=? WHERE user_id=?", (self.baked_cakes(ctx.author.id) - amt, ctx.author.id))
-
-   self.db.execute("UPDATE Bakery SET bakebucks=? WHERE user_id=?", (self.baked_cakes(ctx.author.id) * amt + 2, ctx.author.id))
-
+   
    await ctx.reply(f"✅ You've sold **{amt}** cakes, you now have `{self.bakery_bucks(ctx.author.id)}` BakeBucks, and `{self.baked_cakes(ctx.author.id)}` cakes.")
-
 
 def setup(bot):
   bot.add_cog(Shop(bot))

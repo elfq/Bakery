@@ -4,6 +4,7 @@ import asyncio
 import re
 from discord.ext import commands
 from utils.database import create_tables, sqlite
+from discord.ext.commands.cooldowns import BucketType
 
 tables = create_tables.creation(debug=True)
 if not tables:
@@ -96,6 +97,7 @@ class Bakery(commands.Cog):
 
   @bakery.command(name="view")
   async def view_(self, ctx):
+  @commands.cooldown(1, 5, BucketType.user) 
    if self.bakery_name(ctx.author.id) == None:
      return await ctx.send(f":x: You need to create a bakery in order to use this command, use **`b!bakery start`** to create one.")
 
