@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from utils.database import create_tables, sqlite
-from utils import default, checks
+from utils import checks
 import random
 import asyncio
 import re
@@ -51,12 +51,12 @@ class Bakery(commands.Cog):
       description = "Commands that relate to **Bakery**, to use a command, type `b!bakery <section>`.",
       color = discord.Colour.blurple()
     )
-    embed.set_thumbnail(url=self.bot.user.avatar_url)
-    embed.add_field(name="Sections", value="**start**\n**view**")
-    await ctx.reply(embed=embed)
+    embed.set_thumbnail(url = self.bot.user.avatar_url)
+    embed.add_field(name = "Sections", value = "**start**\n**view**")
+    await ctx.reply(embed = embed)
 
 
-  @bakery.command(name="start")
+  @bakery.command(name = "start")
   async def start_(self, ctx):
    if self.bakery_name(ctx.author.id):
      return await ctx.send(f":x: You've already created a bakery!")
@@ -70,10 +70,10 @@ class Bakery(commands.Cog):
      return False
 
    try:
-     user = await self.bot.wait_for('message', timeout=30.0, check=check_name)
+     user = await self.bot.wait_for('message', timeout = 30.0, check = check_name)
    except asyncio.TimeoutError:
      return await start_content.edit(
-       content=f"~~{start_content.clean_content}~~\n\n:x: Bakery creation failed!")
+       content = f"~~{start_content.clean_content}~~\n\n:x: Bakery creation failed!")
 
    bakery_name = user.content
    confirm_msg = await ctx.send(f"Okay {ctx.author.mention}, are you sure you want to set your Bakery's Name to **`{bakery_name}`**? Please react with ✅ if you're sure.")
@@ -83,7 +83,7 @@ class Bakery(commands.Cog):
      return user == ctx.author and str(reaction.emoji) in ['✅'] and user != self.bot.user
 
    try:
-     reaction, user = await self.bot.wait_for('reaction_add', check=check, timeout=60)
+     reaction, user = await self.bot.wait_for('reaction_add', check = check, timeout=60)
 
    except asyncio.TimeoutError:
      await ctx.send(":x: Timeout error, be a little more faster next time, okay?")
@@ -107,7 +107,7 @@ class Bakery(commands.Cog):
    embed.add_field(name = "Profile", value = f"**Bakery's name:** {self.bakery_name(ctx.author.id)}\n**Level:** {self.bakery_level(ctx.author.id)}\n**BakeBucks:** {self.bakery_bucks(ctx.author.id)}", inline=False)
    embed.add_field(name = "Baked Items", value = f"**Cakes:** {self.baked_cakes(ctx.author.id)}", inline=False)
    embed.set_thumbnail(url = ctx.author.avatar_url)
-   await ctx.reply(embed=embed)
+   await ctx.reply(embed = embed)
 
 
 

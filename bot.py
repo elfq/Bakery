@@ -11,7 +11,7 @@ bot = Bot(
     command_prefix="b!",
     allowed_mentions=AllowedMentions(
         everyone=False, roles=False, users=True),
-    help_command=fancyhelp.EmbeddedHelpCommand(color=discord.Colour.Blurple()),
+    help_command=fancyhelp.EmbeddedHelpCommand(color=0x4e5d94),
     activity=Game("with cakes 🍰"),
 )
 
