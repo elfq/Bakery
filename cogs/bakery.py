@@ -1,10 +1,8 @@
 import discord
-from discord.ext import commands
-from utils.database import create_tables, sqlite
-from utils import checks
 import random
 import asyncio
-import re
+from discord.ext import commands
+from utils.database import create_tables, sqlite
 
 tables = create_tables.creation(debug=True)
 if not tables:
