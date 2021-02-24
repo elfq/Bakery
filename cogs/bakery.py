@@ -1,12 +1,13 @@
 import discord
 import random
 import asyncio
+import re
 from discord.ext import commands
 from utils.database import create_tables, sqlite
 
 tables = create_tables.creation(debug=True)
 if not tables:
-    sys.exit(1)
+ sys.exit(1)
 
 class Bakery(commands.Cog):
   def __init__(self, bot):

@@ -18,7 +18,7 @@ bot = Bot(
 bot.VERSION = "1.0.0"
 
 bot.load_initial_cogs(
-    "cogs.bakery", "cogs.bake"
+    "cogs.bakery", "cogs.bake", "cogs.shop"
 )
 
 @bot.event
