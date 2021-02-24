@@ -1,10 +1,16 @@
 from utils.database import sqlite as db
 
 
-class Accounts(db.Table):
-    user_id = db.Column("BIGINT", nullable=False, primary_key=True)
-    bakery_name = db.Column("TEXT", nullable=False)
-    cakes = db.Column("BIGINT", nullable=False, primary_key=True)
+class Bakery(db.Table):
+  user_id = db.Column("BIGINT", nullable=False, primary_key=True)
+  bakery_name = db.Column("TEXT", nullable=False)
+  bakebucks = db.Column("INT", nullable=False)
+  level = db.Column("INT", nullable=False)
+
+class Baked(db.Table):
+  user_id = db.Column("BIGINT", nullable=False, primary_key=True)
+  cakes = db.Column("INT", nullable=False, primary_key=True)
+  
 
 
 def creation(debug: bool = False):
