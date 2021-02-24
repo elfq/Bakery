@@ -4,6 +4,7 @@ import asyncio
 from discord.ext import commands
 from utils.database import create_tables, sqlite
 
+
 class Bake(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
@@ -44,7 +45,7 @@ class Bake(commands.Cog):
       description = "You can bake an item by running `b!bake (item name)`, be aware that there is a cooldown for baking each item!",
       color = discord.Colour.blurple()
     )
-    embed.add_field(name = "Items", value = "`b!bake cake`", inline = False)
+    embed.add_field(name = "Sections", value = "`Cake`", inline = False)
     embed.set_thumbnail(url = self.bot.user.avatar_url)
     await ctx.reply(embed = embed)
 
